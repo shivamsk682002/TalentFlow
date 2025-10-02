@@ -3,7 +3,7 @@ import  { useEffect, useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useCandidateViewModel } from "../../../hooks/useCandidateViewModel";
 import useJobViewModel from "../../../hooks/useJobViewModel";
-import { type Candidate, type TimelineEntry, type Note, type Job } from "../../../db/type";
+import { type Candidate, type TimelineEntry, type Note, type Job } from "../../../../public/db/type";
 import PageLoader from "../../../components/loader";
 
 export default function CandidateProfile() {

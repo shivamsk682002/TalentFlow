@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { fetchJobs, getJobById, createJob, updateJob } from "../api/jobs";
-import type { Job } from "../db/type";
-import { reorderJobs } from "../api/jobs";
+import { fetchJobs, getJobById, createJob, updateJob } from "../../public/api/jobs";
+import type { Job } from "../../public/db/type";
+import { reorderJobs } from "../../public/api/jobs";
 
 const useJobViewModel = () => {
   const [loading, setLoading] = useState(false);

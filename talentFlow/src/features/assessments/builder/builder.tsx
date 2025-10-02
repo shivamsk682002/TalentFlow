@@ -1,7 +1,7 @@
 // src/features/assessments/Builder.tsx
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import type { AssessmentSchema, Section, Question, QType } from'../../../db/type';
+import type { AssessmentSchema, Section, Question, QType } from'../../../../public/db/type';
 import { useAssessmentViewModel } from '../../../hooks/useAssessmentViewModel';
 import { v4 as uuidv4 } from 'uuid';
 import { RuntimeForm } from '../runtimeForm/runtimeForm';

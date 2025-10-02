@@ -10,7 +10,7 @@ const queryClient = new QueryClient();
 
 async function bootstrap() {
   if (import.meta.env.DEV) {
-    const { worker } = await import('./api/browser.ts');
+    const { worker } = await import('../public/api/browser.ts');
     if (import.meta.env.DEV) {
     await worker.start({
       serviceWorker: {
@@ -21,7 +21,7 @@ async function bootstrap() {
     console.log('MSW worker started');
   }
 
-  const { seedIfEmpty } = await import('./db/seed');
+  const { seedIfEmpty } = await import('../public/db/seed.ts');
   await seedIfEmpty();
 
 createRoot(document.getElementById('root')!).render(

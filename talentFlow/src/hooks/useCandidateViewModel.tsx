@@ -1,7 +1,7 @@
 import { useState } from "react";
-import type { Candidate,TimelineEntry,Note } from "../db/type";
+import type { Candidate,TimelineEntry,Note } from "../../public/db/type";
 
-import { fetchCandidate,fetchCandidates,fetchTimeline,patchCandidate,addNote} from "../api/candidate";
+import { fetchCandidate,fetchCandidates,fetchTimeline,patchCandidate,addNote} from "../../public/api/candidate";
 
 export const useCandidateViewModel=()=>{
     const [loading,setLoading] =useState(false);

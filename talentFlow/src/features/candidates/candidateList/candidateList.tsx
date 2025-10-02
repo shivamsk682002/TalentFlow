@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useCandidateViewModel } from "../../../hooks/useCandidateViewModel";
-import type { Candidate } from "../../../db/type";
+import type { Candidate } from "../../../../public/db/type";
 import PageLoader from "../../../components/loader";
 
 export default function CandidateList() {

@@ -1,7 +1,7 @@
 // src/features/jobs/LandingDesignPage.tsx
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import type { Job } from '../../../db/type';
+import type { Job } from '../../../../public/db/type';
 import useJobViewModel from '../../../hooks/useJobViewModel';
 import JobEditorModal from '../jobEditorialModel/jobEditorialModel';
 import { DndContext } from '@dnd-kit/core';

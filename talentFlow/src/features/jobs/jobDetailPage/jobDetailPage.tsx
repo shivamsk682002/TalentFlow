@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation, Link } from 'react-router-dom';
 import useJobViewModel from '../../../hooks/useJobViewModel';
-import type { Job } from '../../../db/type';
+import type { Job } from '../../../../public/db/type';
 import PageLoader from '../../../components/loader';
 
 export default function JobDetailPage() {
