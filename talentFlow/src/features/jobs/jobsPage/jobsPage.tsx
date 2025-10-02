@@ -61,59 +61,64 @@ function FiltersBar({
 
   return (
     <div className="bg-white border border-blue-500/30 rounded-lg p-4 shadow-sm">
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-3 items-center">
-        <div className="md:col-span-2">
-          <label className="block text-sm text-blue-900 mb-1">Search Jobs</label>
-          <input
-            aria-label="Search jobs"
-            className="w-full border border-blue-950/25 rounded px-3 py-2 text-sm"
-            placeholder="Job title, skills..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm text-blue-900 mb-1">Status</label>
-          <select
-            aria-label="Status filter"
-            className="w-full border border-blue-950/25 rounded px-3 py-2 text-sm"
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-          >
-            <option value="">All Status</option>
-            <option value="active">Active</option>
-            <option value="draft">Draft</option>
-            <option value="archived">Archived</option>
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-sm text-blue-900 mb-1">Sort By</label>
-          <select
-            aria-label="Sort"
-            className="w-full border border-blue-950/25 rounded px-3 py-2 text-sm"
-            value={sort}
-            onChange={(e) => setSort(e.target.value)}
-          >
-            <option value="">Newest First</option>
-            <option value="title:asc">Title A → Z</option>
-            <option value="title:desc">Title Z → A</option>
-            <option value="order:asc">Order ↑</option>
-            <option value="order:desc">Order ↓</option>
-          </select>
-        </div>
-
-        <div className="flex items-end">
-          <button
-            onClick={() => onSearch({ search, status, sort })}
-            className="ml-auto px-4 py-2 bg-blue-500 text-white rounded text-sm font-medium"
-          >
-            Search
-          </button>
-        </div>
-      </div>
+  <div className="grid grid-cols-1 md:grid-cols-5 gap-3 items-center">
+    <div className="md:col-span-2">
+      <label className="block text-sm text-blue-900 mb-1">Search Jobs</label>
+      <input
+        aria-label="Search jobs"
+        className="w-full border border-blue-950/25 rounded px-3 py-2 text-sm 
+                   focus:outline-none focus:ring-2 focus:ring-blue-500/25 focus:border-blue-500/25"
+        placeholder="Job title, skills..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
     </div>
+
+    <div>
+      <label className="block text-sm text-blue-900 mb-1">Status</label>
+      <select
+        aria-label="Status filter"
+        className="w-full border border-blue-950/25 rounded px-3 py-2 text-sm
+                   focus:outline-none focus:ring-2 focus:ring-blue-500/25 focus:border-blue-500/25"
+        value={status}
+        onChange={(e) => setStatus(e.target.value)}
+      >
+        <option value="">All Status</option>
+        <option value="active">Active</option>
+        <option value="draft">Draft</option>
+        <option value="archived">Archived</option>
+      </select>
+    </div>
+
+    <div>
+      <label className="block text-sm text-blue-900 mb-1">Sort By</label>
+      <select
+        aria-label="Sort"
+        className="w-full border border-blue-950/25 rounded px-3 py-2 text-sm
+                   focus:outline-none focus:ring-2 focus:ring-blue-500/25 focus:border-blue-500/25"
+        value={sort}
+        onChange={(e) => setSort(e.target.value)}
+      >
+        <option value="">Newest First</option>
+        <option value="title:asc">Title A → Z</option>
+        <option value="title:desc">Title Z → A</option>
+        <option value="order:asc">Order ↑</option>
+        <option value="order:desc">Order ↓</option>
+      </select>
+    </div>
+
+    <div className="flex items-end">
+      <button
+        onClick={() => onSearch({ search, status, sort })}
+        className="ml-auto px-4 py-2 bg-blue-500 text-white rounded text-sm font-medium
+                   hover:bg-blue-600 transition"
+      >
+        Search
+      </button>
+    </div>
+  </div>
+</div>
+
   );
 }
 

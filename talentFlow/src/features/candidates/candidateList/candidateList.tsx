@@ -170,13 +170,7 @@ export default function CandidateList() {
                       View
                     </Link>
 
-                    <Link
-                      to={`/candidates/${c.id}/edit`}
-                      onClick={(e) => e.stopPropagation()}
-                      className="text-sm px-3 py-1 rounded bg-blue-400/10 hover:bg-blue-400/20"
-                    >
-                      Edit
-                    </Link>
+                    
                   </div>
                 </div>
               </article>
