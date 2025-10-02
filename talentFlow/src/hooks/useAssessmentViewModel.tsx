@@ -1,7 +1,7 @@
 // src/hooks/useAssessmentViewModel.ts
 import { useState } from 'react';
-import type { AssessmentSchema,Section } from '../../public/db/type';
-import { fetchAssessment,saveAssessment,submitAssessment } from '../../public/api/assesment';
+import type { AssessmentSchema,Section } from '../db/type';
+import { fetchAssessment,saveAssessment,submitAssessment } from '../api/assesment';
 
 export const useAssessmentViewModel = () => {
   const [loading,setLoading] = useState(false);

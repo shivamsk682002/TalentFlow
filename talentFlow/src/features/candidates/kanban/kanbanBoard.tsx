@@ -1,7 +1,7 @@
 // src/features/kanban/KanbanBoard.tsx
 import { useEffect, useMemo, useState } from "react";
 import { useCandidateViewModel } from "../../../hooks/useCandidateViewModel";
-import type { Candidate, Stage } from "../../../../public/db/type";
+import type { Candidate, Stage } from "../../../db/type";
 import {
   DndContext,
   PointerSensor,

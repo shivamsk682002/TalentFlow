@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import type { Note } from "../../../public/db/type";
+import type { Note } from "../../db/type";
 import { useCandidateViewModel } from "../../hooks/useCandidateViewModel";
 
 export function CandidateNotes({ candidateId, initialNotes = [] }: { candidateId: string; initialNotes: Note[] }) {

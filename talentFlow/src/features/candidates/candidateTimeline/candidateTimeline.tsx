@@ -1,6 +1,6 @@
 // src/features/candidate/CandidateTimeline.tsx
 import { useEffect, useState } from "react";
-import type { TimelineEntry } from "../../../../public/db/type";
+import type { TimelineEntry } from "../../../db/type";
 import { useCandidateViewModel } from "../../../hooks/useCandidateViewModel";
 
 export function CandidateTimeline({ candidateId }: { candidateId: string }) {

@@ -1,6 +1,6 @@
 // src/features/assessments/RuntimeForm.tsx
 import React, { useMemo, useState } from 'react';
-import type { AssessmentSchema,Question,Section } from '../../../../public/db/type';
+import type { AssessmentSchema,Question,Section } from '../../../db/type';
 import { useAssessmentViewModel } from '../../../hooks/useAssessmentViewModel';
 
 type Props = { schema: AssessmentSchema; candidateId?: string };

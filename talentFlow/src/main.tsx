@@ -12,13 +12,13 @@ async function bootstrap() {
   try {
 
     // Start MSW worker (unconditional here — change if you want dev-only)
-    const { startWorker } = await import('../public/api/browser');
+    const { startWorker } = await import('./api/browser');
     await startWorker();
     // eslint-disable-next-line no-console
     console.log('[bootstrap] MSW worker started');
 
     // Seed DB (your seedIfEmpty should be in src/db/seed.ts)
-    const { seedIfEmpty } = await import('../public/db/seed');
+    const { seedIfEmpty } = await import('./db/seed');
     await seedIfEmpty();
     // eslint-disable-next-line no-console
     console.log('[bootstrap] DB seeded (if empty)');
