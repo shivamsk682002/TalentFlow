@@ -1,6 +1,6 @@
 // src/features/jobs/LandingDesignPage.tsx
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useNavigation, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import type { Job } from '../../../db/type';
 import useJobViewModel from '../../../hooks/useJobViewModel';
 import JobEditorModal from '../jobEditorialModel/jobEditorialModel';
