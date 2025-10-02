@@ -9,7 +9,7 @@ import {BrowserRouter} from 'react-router-dom'
 const queryClient = new QueryClient();
 
 async function bootstrap() {
-  if (import.meta.env.DEV) {
+  
     const { worker } = await import('../public/api/browser.ts');
     if (import.meta.env.DEV) {
     await worker.start({
@@ -19,7 +19,7 @@ async function bootstrap() {
     });
   }
     console.log('MSW worker started');
-  }
+  
 
   const { seedIfEmpty } = await import('../public/db/seed.ts');
   await seedIfEmpty();
