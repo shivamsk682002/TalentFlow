@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
 import { db } from '../db/db';
 import { v4 as uuidv4 } from 'uuid';
-import type { AssessmentResponse, Candidate, Job, TimelineEntry } from '../db/type';
+import type { Candidate, Job, TimelineEntry } from '../db/type';
 const ERROR_RATE = 0.05;
 const minLatency = 200;
 const maxLatency = 900;

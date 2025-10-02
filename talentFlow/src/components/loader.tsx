@@ -1,4 +1,4 @@
-import React from "react";
+
 
 export default function PageLoader({ label = "Loading…" }: { label?: string }) {
   return (

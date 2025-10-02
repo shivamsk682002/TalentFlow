@@ -1,5 +1,5 @@
 // src/features/candidates/CandidateList.tsx
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useCandidateViewModel } from "../../../hooks/useCandidateViewModel";
 import type { Candidate } from "../../../db/type";

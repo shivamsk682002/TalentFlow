@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState, useMemo } from "react";
+import  { useEffect, useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useCandidateViewModel } from "../../../hooks/useCandidateViewModel";
 import useJobViewModel from "../../../hooks/useJobViewModel";

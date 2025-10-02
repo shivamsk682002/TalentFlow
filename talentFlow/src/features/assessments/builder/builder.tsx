@@ -1,5 +1,5 @@
 // src/features/assessments/Builder.tsx
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import type { AssessmentSchema, Section, Question, QType } from'../../../db/type';
 import { useAssessmentViewModel } from '../../../hooks/useAssessmentViewModel';

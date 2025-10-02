@@ -1,13 +1,10 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+
+import { Link} from 'react-router-dom';
 import { useState,useEffect } from 'react';
 
 function RoleToggle() {
-  const [role, setRole] = useState<'hr' | 'candidate'>(() => (localStorage.getItem('role') as any) || 'hr');
+  const role= 'hr';
 
-  useEffect(() => {
-    localStorage.setItem('role', role);
-  }, [role]);
 
   return (
     <div className="flex items-center gap-3 ">

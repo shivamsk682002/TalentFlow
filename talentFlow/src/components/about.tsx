@@ -1,5 +1,4 @@
 // src/pages/AboutPage.tsx
-import React from "react";
 import { Link } from "react-router-dom";
 
 export default function About() {
@@ -51,7 +50,7 @@ export default function About() {
             </div>
           </div>
         </section>
-        
+
         <footer className="flex justify-center gap-4 pt-6 border-t border-blue-100">
           <Link
             to="/"

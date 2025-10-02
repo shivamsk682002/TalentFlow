@@ -1,4 +1,4 @@
-// src/features/candidate/CandidateNotes.tsx
+
 import { useState } from "react";
 import type { Note } from "../../db/type";
 import { useCandidateViewModel } from "../../hooks/useCandidateViewModel";
