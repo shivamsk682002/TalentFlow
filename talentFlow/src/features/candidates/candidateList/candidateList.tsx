@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useCandidateViewModel } from "../../../hooks/useCandidateViewModel";
 import type { Candidate } from "../../../db/type";
+import PageLoader from "../../../components/loader";
 
 export default function CandidateList() {
   const vm = useCandidateViewModel();
@@ -122,7 +123,7 @@ export default function CandidateList() {
         {/* Candidate cards list */}
         <div className="space-y-4">
           {vm.loading && candidates.length === 0 ? (
-            <div className="p-6 bg-white border rounded text-blue-900">Loading candidates…</div>
+             <PageLoader label="Loading candidates"></PageLoader>
           ) : vm.error && candidates.length === 0 ? (
             <div className="p-6 bg-white border rounded text-red-600">{vm.error}</div>
           ) : candidates.length === 0 ? (
@@ -205,7 +206,6 @@ export default function CandidateList() {
           </div>
         </div>
 
-        {/* small status row */}
         <div className="mt-4">
           {vm.loading && <div className="text-sm text-blue-900">Loading…</div>}
           {vm.error && <div className="text-sm text-red-600">Error: {vm.error}</div>}

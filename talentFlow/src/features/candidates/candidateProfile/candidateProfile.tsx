@@ -1,8 +1,10 @@
-// src/features/candidates/CandidateProfile.tsx
+
 import React, { useEffect, useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useCandidateViewModel } from "../../../hooks/useCandidateViewModel";
-import type { Candidate, TimelineEntry, Note } from "../../../db/type";
+import useJobViewModel from "../../../hooks/useJobViewModel";
+import { type Candidate, type TimelineEntry, type Note, type Job } from "../../../db/type";
+import PageLoader from "../../../components/loader";
 
 export default function CandidateProfile() {
   const { id } = useParams<{ id: string }>();
@@ -12,6 +14,8 @@ export default function CandidateProfile() {
   const [timeline, setTimeline] = useState<TimelineEntry[]>([]);
   const [notes, setNotes] = useState<Note[]>([]);
   const [noteText, setNoteText] = useState("");
+  const [job,setJob]= useState<Job |null>(null);
+  const {getJob}=useJobViewModel();
 
   useEffect(() => {
     if (!id) return;
@@ -20,10 +24,18 @@ export default function CandidateProfile() {
       setNotes(c?.notes ?? []);
     }).catch(() => {});
     vm.getTimeline(id, setTimeline).catch(() => {});
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+  
+  useEffect(()=>{
+    
+    if(candidate?.jobId)
+    {
+      getJob(candidate.jobId,setJob)
+    }
+    
+  },[candidate])
+console.log("job",job)
 
-  // locale aware date formatter
   const locale = typeof navigator !== "undefined" ? navigator.language : "en-US";
   const formatter = useMemo(
     () =>
@@ -37,7 +49,6 @@ export default function CandidateProfile() {
 
   const handleAddNote = async () => {
     if (!id || !noteText.trim()) return;
-    // optimistic note
     const optimistic: Note = {
       id: "temp-" + Date.now(),
       text: noteText.trim(),
@@ -48,18 +59,14 @@ export default function CandidateProfile() {
 
     try {
       const saved = await vm.addCandidateNote(id, optimistic.text);
-      // replace optimistic with saved note
       setNotes((prev) => prev.map((n) => (n.id === optimistic.id ? saved : n)));
-      // keep candidate.notes in sync for future renders
       setCandidate((prev) => (prev ? { ...prev, notes: [...(prev.notes ?? []).filter(n => n.id !== optimistic.id), saved] } : prev));
     } catch {
-      // rollback on error
       setNotes((prev) => prev.filter((n) => n.id !== optimistic.id));
       alert("Failed to add note");
     }
   };
 
-  // small renderer to highlight @mentions
   const renderNoteText = (t: string) => {
     const parts = t.split(/(@[\w-]+)/g);
     return parts.map((p, i) =>
@@ -74,7 +81,7 @@ export default function CandidateProfile() {
   };
 
   if (vm.loading && !candidate) {
-    return <div className="p-6 text-sm">Loading candidate…</div>;
+    return  <PageLoader label="Loading Candidate"></PageLoader>;
   }
   if (!candidate) {
     return <div className="p-6 text-sm text-red-600">Candidate not found</div>;
@@ -82,15 +89,12 @@ export default function CandidateProfile() {
 
   return (
     <div className="p-6 max-w-3xl mx-auto space-y-6">
-      {/* Back */}
       <Link
         to="/candidates"
         className="text-sm text-blue-600 hover:underline inline-block"
       >
         ← Back to candidates
       </Link>
-
-      {/* Header card */}
       <div className="bg-white border border-blue-500/30 rounded-lg p-6 shadow-sm">
         <div className="flex items-start gap-4">
           {/* Avatar */}
@@ -101,8 +105,11 @@ export default function CandidateProfile() {
           <div className="flex-1">
             <h1 className="text-2xl font-bold text-blue-950">{candidate.name}</h1>
             <div className="text-sm text-gray-500">{candidate.email}</div>
-
-            <div className="mt-3 flex items-center gap-3">
+            <div className="mt-2 flex items-center gap-3">
+              <span className="text-sm text-slate-600">Applied for:</span>
+              <span className="text-sm text-slate-600">{job?.title}</span>
+            </div>
+            <div className="mt-2 flex items-center gap-3">
               <span className="text-sm text-slate-600">Stage</span>
               <span
                 className={`px-2 py-1 text-xs rounded ${
@@ -116,15 +123,14 @@ export default function CandidateProfile() {
                 {candidate.stage}
               </span>
             </div>
+            
           </div>
         </div>
       </div>
-
-      {/* Timeline */}
       <section>
         <h2 className="text-lg font-semibold mb-2">Timeline</h2>
         <div className="space-y-3">
-          {vm.loading && <div className="text-sm">Loading timeline…</div>}
+          {vm.loading &&  <PageLoader></PageLoader>}
           {!vm.loading && (!timeline || timeline.length === 0) && (
             <div className="p-4 bg-white border border-blue-500/30 rounded text-sm text-gray-500">
               No timeline entries
@@ -148,11 +154,9 @@ export default function CandidateProfile() {
         </div>
       </section>
 
-      {/* Notes */}
       <section className="space-y-3">
         <h2 className="text-lg font-semibold">Notes</h2>
 
-        {/* Existing notes */}
         {notes.length ? (
           <div className="space-y-2">
             {notes.map((n) => (
@@ -173,7 +177,6 @@ export default function CandidateProfile() {
           </div>
         )}
 
-        {/* Add note box (keeps same visual language) */}
         <div className="bg-white border border-blue-500/30 rounded p-4 shadow-sm">
           <label className="block text-sm font-medium text-blue-950 mb-2">
             Add a note

@@ -7,6 +7,12 @@ export async function fetchAssessment(jobId: string): Promise<AssessmentSchema> 
   return await r.json();
 }
 
+// export async function fetchAllAssessment(): Promise<AssessmentSchema> {
+//   const r = await fetch(`/api/assessments`);
+//   if (!r.ok) throw new Error('Failed to fetch assessment');
+//   return await r.json();
+// }
+
 export async function saveAssessment(jobId: string, sections: Section[]): Promise<AssessmentSchema> {
   const r = await fetch(`/api/assessments/${jobId}`, {
     method: 'PUT',

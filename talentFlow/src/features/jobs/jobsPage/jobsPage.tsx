@@ -8,6 +8,7 @@ import { DndContext } from '@dnd-kit/core';
 import type { DragEndEvent } from '@dnd-kit/core';
 import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import PageLoader from '../../../components/loader';
 
 /* --------------------------- Hero Component --------------------------- */
 function Hero() {
@@ -313,7 +314,7 @@ export default function LandingDesignPage() {
               </div>
 
               {loading ? (
-                <div className="p-6 bg-white border rounded text-blue-900 w-full">Loading jobs…</div>
+                 <PageLoader label='Loading jobs'></PageLoader>
               ) : error ? (
                 <div className="p-6 bg-white border rounded text-red-600 w-full">{error}</div>
               ) : jobs.length === 0 ? (

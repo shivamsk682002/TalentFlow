@@ -27,6 +27,7 @@ export default function Builder() {
     vm.get(jobId, setSchema).catch(()=>{});
   }, [jobId]);
 
+
   const addSection = () => {
     const s: Section = { id: uuidv4(), title: `Section ${schema.sections.length + 1}`, questions: [] };
     setSchema(prev => ({ ...prev, sections: [...prev.sections, s] }));

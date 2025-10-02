@@ -17,6 +17,17 @@ export const useAssessmentViewModel = () => {
       setError(e?.message ?? 'Failed to fetch assessment'); throw e;
     } finally { setLoading(false); }
   };
+  // const getAll = async ( setAllAssesment: (s: any)=>void) => {
+  //   setLoading(true); setError(null);
+  //   try {
+  //     const assesments = await fetchAllAssessment();
+  //     console.log(assesments)
+  //     setAllAssesment(assesments);
+  //     return assesments;
+  //   } catch (e:any) {
+  //     setError(e?.message ?? 'Failed to fetch assessment'); throw e;
+  //   } finally { setLoading(false); }
+  // };
 
   const save = async (jobId: string, sections: Section[], onSuccess?: (s: AssessmentSchema)=>void) => {
     setLoading(true); setError(null);

@@ -219,7 +219,6 @@ http.patch('/api/jobs/reorder', async ({ request }) => {
     await randomDelay();
     const{id}=params;
     const candidate = await db.candidates.get(String(id));
-    console.log("candidate",candidate);
     if(!candidate)
     {
       HttpResponse.json({message:'Candidate not fount'},{status:404});
@@ -293,13 +292,19 @@ http.patch('/api/jobs/reorder', async ({ request }) => {
     return HttpResponse.json(newNote, { status: 201 });
   }),
 
-  http.get('api/assessments/:jobId',async({params})=>{
+  http.get('/api/assessments/:jobId',async({params})=>{
     await randomDelay();
     const {jobId}=params;
     const assesment = await db.assessments.get(jobId as string);
     const sections = (assesment?.sections as any[]) || [];
+    
     return HttpResponse.json({ jobId, sections },{status:200});
   }),
+  // http.get('/api/assessments',async()=>{
+  //   await randomDelay();
+  //   const assesment = await db.assessments.toArray();
+  //   return HttpResponse.json({data: assesment },{status:200});
+  // }),
   http.put('/api/assessments/:jobId', async ({ params, request }) => {
   await randomDelay();
   if (Math.random() < ERROR_RATE) {

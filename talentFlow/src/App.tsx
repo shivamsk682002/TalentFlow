@@ -10,6 +10,7 @@ import CandidateList from './features/candidates/candidateList/candidateList';
 import CandidateProfile from './features/candidates/candidateProfile/candidateProfile';
 import KanbanPage from './features/candidates/kanban/kanban';
 import Builder from './features/assessments/builder/builder';
+import About from './components/about';
 
 export default function App()
 {
@@ -19,6 +20,7 @@ export default function App()
     <Routes>
       
       <Route path="/" element={<Navigate to="jobs" replace/>}></Route>
+      <Route path="/about" element={<About/>}></Route>
       <Route path="/jobs" element={<JobsPage/>}></Route>
       <Route path="/jobs/new" element={<JobEditorialModel/>}></Route>
       <Route path="/jobs/:jobId" element={<JobDetailPage/>}></Route>
@@ -27,9 +29,7 @@ export default function App()
       <Route path="/candidates/:id" element={<CandidateProfile/>}></Route>
       <Route path="/jobs/:jobId/kanban" element={<KanbanPage/>}></Route>
       <Route path="/jobs/:jobId/candidates" element={<CandidateList/>}></Route>
-      <Route path="/jobs/:jobId/assessment" element={<Builder />} />
-
-      
+      <Route path="/jobs/:jobId/assessment" element={<Builder />} />    
     </Routes>
     </div>
   );
