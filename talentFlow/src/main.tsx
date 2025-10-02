@@ -12,7 +12,7 @@ async function bootstrap() {
   try {
 
     // Start MSW worker (unconditional here — change if you want dev-only)
-    const { startWorker } = await import('./api/browser');
+    const { startWorker } = await import('./mock/browser');
     await startWorker();
     // eslint-disable-next-line no-console
     console.log('[bootstrap] MSW worker started');
