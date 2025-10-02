@@ -87,8 +87,10 @@ export const useCandidateViewModel=()=>{
   const addCandidateNote = async (id: string, text: string, onSuccess?: (n: Note) => void) => {
     setLoading(true);
     setError(null);
+
     try {
       const res:any= await addNote(id, text);
+      onSuccess;
       return res;
     } catch (err: any) {
       setError(err?.message ?? "Failed to add note");

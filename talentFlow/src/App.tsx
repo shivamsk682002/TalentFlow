@@ -1,6 +1,5 @@
 
 import './App.css'
-import React from 'react';
 import { Routes,Route,Navigate } from 'react-router-dom';
 import JobsPage from './features/jobs/jobsPage/jobsPage';
 import JobDetailPage from './features/jobs/jobDetailPage/jobDetailPage';

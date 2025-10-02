@@ -217,7 +217,7 @@ export default function LandingDesignPage() {
   const { getJobs, reorderJobList } = useJobViewModel();
 
   // role from localStorage
-  const role = (localStorage.getItem('role') as 'hr' | 'candidate') || 'hr';
+  const role =  'hr';
 
   const loadJobs = async () => {
     setLoading(true);
@@ -285,9 +285,7 @@ export default function LandingDesignPage() {
   };
 
   // Edit navigation (kept as Link in JobCard - kept here if you later want programmatic nav)
-  const handleEdit = (id: string) => {
-    navigate(`/jobs/${id}/edit`, { state: { background: window.location } });
-  };
+ 
 
   return (
     <div className="min-h-screen bg-blue-300/6 text-blue-950">

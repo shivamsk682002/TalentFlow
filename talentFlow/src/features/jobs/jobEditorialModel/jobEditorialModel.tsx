@@ -12,10 +12,12 @@ type FormValues = {
   tags: string;
   description?: string;
 };
+type JobEditorModalProps = {
+  onClose?: () => void;
+};
 
-export default function JobEditorModal({ onClose }: { onClose: () => void }) {
+export default function JobEditorModal({ onClose }: JobEditorModalProps) {
   const navigate = useNavigate();
-  const location = useLocation();
   const { jobId } = useParams<{ jobId: string }>();
   const isEdit = Boolean(jobId);
 
@@ -67,7 +69,7 @@ export default function JobEditorModal({ onClose }: { onClose: () => void }) {
       } else {
         await createNewJob({ ...payload, id: uuidv4() });
       }
-      onClose();
+      onClose?onClose():"";
     } catch (err) {
       console.error(err);
     }
