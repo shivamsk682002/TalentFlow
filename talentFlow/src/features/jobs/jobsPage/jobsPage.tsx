@@ -1,6 +1,6 @@
 // src/features/jobs/LandingDesignPage.tsx
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useNavigation, useSearchParams } from 'react-router-dom';
 import type { Job } from '../../../db/type';
 import useJobViewModel from '../../../hooks/useJobViewModel';
 import JobEditorModal from '../jobEditorialModel/jobEditorialModel';
@@ -121,6 +121,7 @@ function FiltersBar({
 function JobCard({ job, role }: { job: Job; role: 'hr' | 'candidate' }) {
   const posted = job.createdAt ? new Date(job.createdAt) : undefined;
   const postedText = posted ? posted.toLocaleDateString() : job.order ? `Posted ${job.order}` : '';
+  const navigate=useNavigate();
 
   return (
     <div className="bg-white border border-blue-500/30 shadow-xl rounded-lg p-5 flex items-start justify-between">
@@ -156,7 +157,7 @@ function JobCard({ job, role }: { job: Job; role: 'hr' | 'candidate' }) {
             >
               Edit
             </Link>
-            <Link onClick={(e) => e.stopPropagation()} to={`/jobs/${job.id}`} className="text-sm text-blue-900 ml-2">
+            <Link onClick={()=>navigate(`/jobs/${job.id}`)} to={`/jobs/${job.id}`} className="text-sm text-blue-900 ml-2">
               View Details
             </Link>
           </>
@@ -196,8 +197,8 @@ function SortableJob({ job, role }: { job: Job; role: 'hr' | 'candidate' }) {
 
 /* --------------------------- LandingDesignPage --------------------------- */
 export default function LandingDesignPage() {
-  const [searchParams, setSearchParams] = useSearchParams();
 
+  const [searchParams, setSearchParams] = useSearchParams();
   // query params
   const page = Number(searchParams.get('page') ?? 1);
   const pageSize = Number(searchParams.get('pageSize') ?? 10);
