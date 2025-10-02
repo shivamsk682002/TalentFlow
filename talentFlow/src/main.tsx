@@ -1,37 +1,44 @@
-
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+// src/main.tsx
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import {BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom';
 
 const queryClient = new QueryClient();
 
 async function bootstrap() {
-  
-    const { worker } = await import('../public/api/browser.ts');
-    if (import.meta.env.DEV) {
-    await worker.start({
-      serviceWorker: {
-        url: '/mockServiceWorker.js', 
-      },
-    });
+  try {
+
+    // Start MSW worker (unconditional here — change if you want dev-only)
+    const { startWorker } = await import('../public/api/browser');
+    await startWorker();
+    // eslint-disable-next-line no-console
+    console.log('[bootstrap] MSW worker started');
+
+    // Seed DB (your seedIfEmpty should be in src/db/seed.ts)
+    const { seedIfEmpty } = await import('../public/db/seed');
+    await seedIfEmpty();
+    // eslint-disable-next-line no-console
+    console.log('[bootstrap] DB seeded (if empty)');
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('[bootstrap] initialization error', err);
+  } finally {
+    // Mount the app whether bootstrap succeeded or not
+    const root = document.getElementById('root');
+    if (!root) throw new Error('Root element not found');
+    createRoot(root).render(
+      <React.StrictMode>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </QueryClientProvider>
+      </React.StrictMode>
+    );
   }
-    console.log('MSW worker started');
-  
-
-  const { seedIfEmpty } = await import('../public/db/seed.ts');
-  await seedIfEmpty();
-
-createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-        <App />
-        </BrowserRouter>
-      </QueryClientProvider>
-  </React.StrictMode>
-)
 }
+
 bootstrap();
