@@ -196,7 +196,6 @@ function SortableJob({ job, role }: { job: Job; role: 'hr' | 'candidate' }) {
 
 /* --------------------------- LandingDesignPage --------------------------- */
 export default function LandingDesignPage() {
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
   // query params
