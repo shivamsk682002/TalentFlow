@@ -56,6 +56,9 @@ function FiltersBar({
   const [search, setSearch] = useState(initialSearch ?? '');
   const [status, setStatus] = useState(initialStatus ?? '');
   const [sort, setSort] = useState(initialSort ?? '');
+   useEffect(() => {
+    onSearch({ search, status, sort });
+  }, [status, sort]);
 
   return (
     <div className="bg-white border border-blue-500/30 rounded-lg p-4 shadow-sm">
@@ -361,8 +364,6 @@ export default function LandingDesignPage() {
             <div>© {new Date().getFullYear()} TalentFlow. All rights reserved.</div>
             <div className="flex gap-4">
               <Link to="/about" className="hover:underline">About</Link>
-              <Link to="/privacy" className="hover:underline">Privacy</Link>
-              <Link to="/contact" className="hover:underline">Contact</Link>
             </div>
           </div>
         </footer>
