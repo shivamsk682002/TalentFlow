@@ -20,13 +20,13 @@ export default function Navbar() {
       <nav className="w-full bg-white border-b border-blue-500/30 fixed z-50">
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="h-16 flex items-center justify-between">
-            {/* Left side */}
             <div className="flex items-center gap-6">
-              <Link to="/" className="text-xl font-bold text-blue-950">
+              <Link
+                to="/"
+                className="text-xl font-bold text-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded"
+              >
                 TalentFlow
               </Link>
-
-              {/* Desktop links */}
               <div className="hidden md:flex items-center gap-4 text-sm">
                 <Link to="/jobs" className="hover:underline text-blue-900">
                   Jobs
@@ -39,12 +39,8 @@ export default function Navbar() {
                 </Link>
               </div>
             </div>
-
-            {/* Right side */}
             <div className="flex items-center gap-4">
               <RoleToggle />
-
-              {/* Mobile menu button */}
               <button
                 className="md:hidden p-2 rounded hover:bg-blue-100"
                 onClick={() => setMenuOpen(!menuOpen)}
@@ -54,8 +50,6 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-
-        {/* Mobile dropdown */}
         {menuOpen && (
           <div className="md:hidden bg-white border-t border-blue-200 shadow-sm">
             <div className="flex flex-col p-4 gap-3 text-sm">
@@ -84,8 +78,6 @@ export default function Navbar() {
           </div>
         )}
       </nav>
-
-      {/* Spacer so content isn't hidden behind fixed navbar */}
       <div className="h-16" />
     </>
   );

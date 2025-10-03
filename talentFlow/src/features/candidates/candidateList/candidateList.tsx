@@ -1,4 +1,3 @@
-// src/features/candidates/CandidateList.tsx
 import { useEffect, useState, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useCandidateViewModel } from "../../../hooks/useCandidateViewModel";
@@ -16,7 +15,6 @@ export default function CandidateList() {
   const [searchInput, setSearchInput] = useState("");
   const [stage, setStage] = useState("");
   console.log("jobId",jobId)
-  // debounce search
   const searchRef = useRef<number | undefined>(0);
   const debouncedFetch = (s: string) => {
     window.clearTimeout(searchRef.current);
@@ -48,12 +46,10 @@ export default function CandidateList() {
         jobId
       })
       .catch(() => {});
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, stage,jobId]);
 
   return (
     <div className="min-h-[60vh] p-6">
-      {/* Header */}
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
           <div>
@@ -64,12 +60,9 @@ export default function CandidateList() {
           </div>
 
           <div className="flex items-center gap-3">
-            {/* You might add a "Create candidate" CTA here if needed */}
             <div className="text-sm text-slate-600">Total: <span className="font-medium text-blue-900">{total}</span></div>
           </div>
         </div>
-
-        {/* Filters card */}
         <div className="bg-white border border-blue-500/30 rounded-lg p-4 mb-6 shadow-sm">
           <div className="grid grid-cols-1 md:grid-cols-6 gap-3 items-end">
             <div className="md:col-span-3">
@@ -119,8 +112,6 @@ export default function CandidateList() {
             </div>
           </div>
         </div>
-
-        {/* Candidate cards list */}
         <div className="space-y-4">
           {vm.loading && candidates.length === 0 ? (
              <PageLoader label="Loading candidates"></PageLoader>
@@ -177,8 +168,6 @@ export default function CandidateList() {
             ))
           )}
         </div>
-
-        {/* Pagination */}
         <div className="mt-6 flex items-center justify-between text-sm">
           <div className="text-slate-600">Showing {Math.min(pageSize, candidates.length)} of {total}</div>
           <div className="flex items-center gap-3">

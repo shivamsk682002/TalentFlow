@@ -1,4 +1,4 @@
-// src/api/assessment.ts
+
 import type { AssessmentSchema,AssessmentResponse,Section } from "../db/type";
 
 export async function fetchAssessment(jobId: string): Promise<AssessmentSchema> {

@@ -1,5 +1,4 @@
 
-
 export default function PageLoader({ label = "Loading…" }: { label?: string }) {
   return (
     <div

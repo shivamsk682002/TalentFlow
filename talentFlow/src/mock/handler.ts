@@ -61,7 +61,6 @@ export const handlers = [
     return HttpResponse.json({ data: paged, total }, { status: 200 });
   }),
 
-  // GET /api/jobs/:id
   http.get('/api/jobs/:id', async ({ params }) => {
     await randomDelay();
     const id = String(params.id);
@@ -72,7 +71,6 @@ export const handlers = [
     return HttpResponse.json({ data: job }, { status: 200 });
   }),
 
-  // POST /api/jobs
   http.post('/api/jobs', async ({ request }) => {
     await randomDelay();
     const body = (await request.json()) as Partial<Job>;
@@ -124,7 +122,7 @@ http.patch('/api/jobs/reorder', async ({ request }) => {
     try {
       await db.transaction('rw', db.jobs, async () => {
         for (let i = 0; i < orderedIds.length; i++) {
-          const id = String(orderedIds[i]); // normalize id type
+          const id = String(orderedIds[i]); 
           await db.jobs.update(id, { order: i });
         }
       });

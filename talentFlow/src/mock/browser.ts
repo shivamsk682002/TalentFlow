@@ -1,22 +1,18 @@
-// src/mocks/browser.ts
 import { setupWorker } from 'msw/browser';
-import { handlers } from './handler'; // adjust path if needed
+import { handlers } from './handler'; 
 
 export const worker = setupWorker(...handlers);
 
 export async function startWorker() {
   try {
     await worker.start({
-      onUnhandledRequest: 'bypass', // allow real requests through if no handler
+      onUnhandledRequest: 'bypass', 
       serviceWorker: {
-        url: '/mockServiceWorker.js', // ensure public/mockServiceWorker.js exists
+        url: '/mockServiceWorker.js',
       },
     });
-    // helpful for debugging in prod/demo
-    // eslint-disable-next-line no-console
     console.log('[MSW] worker started (prod/demo mode)');
   } catch (err) {
-    // eslint-disable-next-line no-console
     console.error('[MSW] failed to start', err);
   }
 }

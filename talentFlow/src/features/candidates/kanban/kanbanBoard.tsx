@@ -1,4 +1,3 @@
-// src/features/kanban/KanbanBoard.tsx
 import { useEffect, useMemo, useState } from "react";
 import { useCandidateViewModel } from "../../../hooks/useCandidateViewModel";
 import type { Candidate, Stage } from "../../../db/type";
@@ -19,8 +18,6 @@ const STAGES: Stage[] = [
   "hired",
   "rejected",
 ];
-
-/* ---------------- CandidateCard ---------------- */
 function CandidateCard({ candidate }: { candidate: Candidate }) {
   const { attributes, listeners, setNodeRef, transform, isDragging } =
     useDraggable({ id: candidate.id });
@@ -29,8 +26,8 @@ function CandidateCard({ candidate }: { candidate: Candidate }) {
     transform: transform
       ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
       : undefined,
-    transition: "none", // 🚀 remove lag to make drag instant
-    willChange: "transform", // 🚀 GPU optimize
+    transition: "none", 
+    willChange: "transform", 
   };
 
   return (
@@ -48,8 +45,6 @@ function CandidateCard({ candidate }: { candidate: Candidate }) {
     </div>
   );
 }
-
-/* ---------------- Column ---------------- */
 function Column({ id, children }: { id: Stage; children: React.ReactNode }) {
   const { setNodeRef, isOver } = useDroppable({ id });
 
@@ -67,20 +62,15 @@ function Column({ id, children }: { id: Stage; children: React.ReactNode }) {
   );
 }
 
-/* ---------------- KanbanBoard ---------------- */
 export default function KanbanBoard({ jobId }: { jobId: string }) {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [total, setTotal] = useState(0);
   const { getCandidates, updateCandidate } = useCandidateViewModel();
-
-  // initial load (filtered by jobId)
   useEffect(() => {
     getCandidates({ jobId, setCandidates, setTotal, page: 1, pageSize: 500 });
   }, [jobId]);
 
   const sensors = useSensors(useSensor(PointerSensor));
-
-  // group candidates by stage
   const grouped = useMemo(() => {
     const by: Record<Stage, Candidate[]> = {
       applied: [],

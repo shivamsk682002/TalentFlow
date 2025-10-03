@@ -1,4 +1,4 @@
-// src/features/kanban/KanbanPage.tsx
+
 import { useParams } from "react-router-dom";
 import KanbanBoard from "./kanbanBoard";
 

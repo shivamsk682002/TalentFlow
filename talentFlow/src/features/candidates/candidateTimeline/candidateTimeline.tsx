@@ -1,4 +1,4 @@
-// src/features/candidate/CandidateTimeline.tsx
+
 import { useEffect, useState } from "react";
 import type { TimelineEntry } from "../../../db/type";
 import { useCandidateViewModel } from "../../../hooks/useCandidateViewModel";

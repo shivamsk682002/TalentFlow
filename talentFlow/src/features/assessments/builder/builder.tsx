@@ -1,4 +1,4 @@
-// src/features/assessments/Builder.tsx
+
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import type { AssessmentSchema, Section, Question, QType } from'../../../db/type';
@@ -22,6 +22,7 @@ export default function Builder() {
   const [schema, setSchema] = useState<AssessmentSchema>({ jobId: jobId!, sections: [] });
   const [dirty, setDirty] = useState(false);
 
+  
   useEffect(() => {
     if (!jobId) return;
     vm.get(jobId, setSchema).catch(()=>{});
@@ -82,13 +83,11 @@ export default function Builder() {
     await vm.save(jobId, schema.sections, (s)=> setSchema(s));
     setDirty(false);
   };
-
-  // Right pane: the live preview is memoized so it re-renders on schema change
+ 
   const preview = useMemo(() => schema, [schema]);
 
   return (
-    <div className="p-6 grid grid-cols-2 gap-6">
-      {/* Left: Builder */}
+    <div className="p-6 grid grid-cols-2 gap-6">  
       <div className="space-y-4">
         <div className="bg-white border border-blue-500/30 rounded p-4 shadow-sm">
           <div className="flex items-center justify-between">
@@ -110,8 +109,6 @@ export default function Builder() {
             </div>
           </div>
         </div>
-
-        {/* Sections */}
         {schema.sections.map((s) => (
           <div key={s.id} className="bg-white border border-blue-500/30 rounded p-4 shadow-sm space-y-3">
             <div className="flex items-center gap-2">
@@ -129,8 +126,6 @@ export default function Builder() {
                 Remove
               </button>
             </div>
-
-            {/* Add question row */}
             <div className="flex items-center gap-2">
               <span className="text-sm text-slate-600">Add question:</span>
               {Q_TYPES.map(t=>(
@@ -143,8 +138,6 @@ export default function Builder() {
                 </button>
               ))}
             </div>
-
-            {/* Questions */}
             <div className="space-y-3">
               {s.questions.map(q=>(
                 <div key={q.id} className="border border-blue-500/20 rounded p-3">
@@ -160,8 +153,6 @@ export default function Builder() {
                     </label>
                     <button onClick={()=>removeQuestion(s.id, q.id)} className="px-2 py-1 text-xs border rounded hover:bg-gray-50">Remove</button>
                   </div>
-
-                  {/* Options for choice types */}
                   {(q.type==='single' || q.type==='multi') && (
                     <div className="mt-2">
                       <div className="text-xs text-slate-600 mb-1">Options</div>
@@ -194,8 +185,6 @@ export default function Builder() {
                       >+ Add option</button>
                     </div>
                   )}
-
-                  {/* Validation for numeric / text */}
                   {q.type==='numeric' && (
                     <div className="mt-2 flex gap-2">
                       <input type="number" placeholder="min"
@@ -219,8 +208,6 @@ export default function Builder() {
                       />
                     </div>
                   )}
-
-                  {/* Conditional */}
                   <div className="mt-2">
                     <div className="text-xs text-slate-600 mb-1">Show this question only if…</div>
                     <div className="flex items-center gap-2">
@@ -248,8 +235,6 @@ export default function Builder() {
           </div>
         ))}
       </div>
-
-      {/* Right: Live preview */}
       <div className="space-y-4">
         <div className="bg-white border border-blue-500/30 rounded p-4 shadow-sm">
           <h2 className="text-lg font-semibold">Live Preview</h2>
