@@ -25,7 +25,6 @@ export default function JobDetailPage() {
   return (
     <div className="bg-blue-50/10 min-h-screen p-4 sm:p-6 flex justify-center">
       <div className="w-full max-w-7xl bg-white rounded-2xl shadow-xl p-4 sm:p-8 space-y-6">
-        {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between gap-4 sm:items-center">
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold text-blue-950 break-words">
@@ -51,8 +50,6 @@ export default function JobDetailPage() {
             </button>
           </div>
         </div>
-
-        {/* Tags & Status */}
         <div className="flex flex-wrap items-center gap-2 sm:gap-3">
           {(job.tags || []).map((t) => (
             <span
@@ -72,8 +69,6 @@ export default function JobDetailPage() {
             {job.status ?? 'active'}
           </span>
         </div>
-
-        {/* Description */}
         <section>
           <h2 className="text-lg sm:text-xl font-semibold text-blue-950 mb-2">
             Description
@@ -82,8 +77,6 @@ export default function JobDetailPage() {
             {job.description ?? 'No description available.'}
           </p>
         </section>
-
-        {/* Navigation Buttons */}
         <div className="mt-4 sm:mt-6">
           <div className="flex flex-wrap gap-2 sm:gap-3">
             <Link
