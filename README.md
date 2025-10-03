@@ -18,8 +18,8 @@ git clone https://github.com/shivamsk682002/TalentFlow.git
 cd talentflow
 
 # install dependencies
-npm install
-npm run dev
+- npm install
+- npm run dev
 ## 🏗️ Architecture
 
 ### Frontend
