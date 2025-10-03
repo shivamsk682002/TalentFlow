@@ -14,7 +14,7 @@ It simulates job postings, candidate management, and assessments – all running
 ### Installation
 bash
 # clone repository
-git clone https://github.com/<your-username>/talentflow.git
+git clone https://github.com/shivamsk682002/TalentFlow.git
 cd talentflow
 
 # install dependencies
@@ -82,10 +82,6 @@ npm run dev
 - **SPA with React Router (BrowserRouter)**  
   - Clean URLs (`/jobs/job-1/edit`) make deep linking possible.  
   - Required Vercel rewrites for production reload support.  
-
-- **React Query for data fetching**  
-  - Handles caching, background re-fetching, and mutation updates.  
-  - Keeps API layer consistent with how a real REST/GraphQL backend would behave.  
 
 - **Seeding Assessments with rich technical questions**  
   - Jobs `job-1`, `job-2`, and `job-3` have pre-populated 10+ questions each.  
